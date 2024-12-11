@@ -12,24 +12,13 @@ using namespace GOMA;
 // Función para analizar una cadena binaria en un bitset.
 GOMA::bitset parse_binary_string(const string& input, int n) {
   int p = log2(n) + 1;
-  std::cout << "Size: " << 3*p*4 << "bits" << std::endl;
   GOMA::bitset b(3*p*n); // Crear un bitset de tamaño 3n.
 
   for (size_t i = 0; i < input.length(); ++i) {
-    switch (i)
-    {
-    case 0:
-       b.insert((p * 4 * (3 - i - 1)) + ((input[i] - 48 - 1) * 4) + 1); // Insertar posición en el bitset.
-      break;
-    case 1:
-       b.insert((p * 4 * (3 - i - 1)) + ((input[i] - 48 - 1) * 4) + 1); // Insertar posición en el bitset.
-      break;
-    case 2:
-       b.insert((p * 4 * (3 - i - 1)) + ((input[i] - 48) - 1) * 4 + 1); // Insertar posición en el bitset.
-      break;
-    default:
-      break;
-    }
+    
+
+    b.insert((p * 4 * (3 - i - 1)) + ((input[i] - 48 - 1) * 4) + 1); // Insertar posición en el bitset.
+
    
   }
   return b;
