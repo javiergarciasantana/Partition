@@ -31,7 +31,7 @@ namespace GOMA
 
 		bitset(void) : block_(NULL),
 					   sz_(ceil((double)(32 + 1) / (double)N_BITS_WORD)),
-					   max_inx_(32)
+					   max_inx_(64)
 		{
 
 			block_ = new long [sz_];
