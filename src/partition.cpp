@@ -10,34 +10,27 @@ using namespace std;
 using namespace GOMA;
 
 // Función para analizar una cadena binaria en un bitset.
-GOMA::bitset parse_binary_string(const string& input, int n) {
+GOMA::bitset parse_binary_string(const string& input, int n, int q) {
   int p = log2(n) + 1;
-  GOMA::bitset b(3*p*n); // Crear un bitset de tamaño 3n.
+  GOMA::bitset b(3 * p * n); // Crear un bitset de tamaño 3*p*n.
 
   for (size_t i = 0; i < input.length(); ++i) {
-    
 
-    b.insert((p * 4 * (3 - i - 1)) + ((input[i] - 48 - 1) * 4) + 1); // Insertar posición en el bitset.
+    b.insert((p * 4 * (3 - i - 1)) + (std::atoi(string(1, input[i]).c_str()) - 1) * q + 1); // Insertar posición en el bitset.
 
-   
   }
   return b;
 }
 
-// Función para verificar si la partición 3DM es válida.
-bool is_valid_3dm(const vector<GOMA::bitset>& triples, int n) {
-  GOMA::bitset universe(3 * n); // Conjunto universo completo.
-  for (int i = 1; i <= 3 * n; ++i) {
-    universe.insert(i);
+GOMA::bitset create_bitsetB(int n, int q) {
+  int p = log2(n) + 1;
+  GOMA::bitset b(3 * p * n);
+  for (int i = 0; i < 3 * n; ++i) {
+    b.insert(i * p + 1);
   }
-
-  GOMA::bitset matched(3 * n); // Rastrea los elementos cubiertos.
-  for (const auto& triple : triples) {
-    matched.insert(triple); // Agregar elementos del triple al conjunto matched.
-  }
-
-  return matched.contains(universe); // Asegurarse de que todos los elementos estén cubiertos.
+  return b;
 }
+
 
 int main() {
   string filename;
@@ -51,29 +44,38 @@ int main() {
   }
 
   int n;
+  int q = 0;
   file >> n; // Leer el tamaño del universo.
 
   vector<GOMA::bitset> triples;
   string input;
   while (file >> input) {
-    triples.push_back(parse_binary_string(input, n)); // Analizar cada triple binario.
+    for (size_t i = 0; i < input.length(); ++i) {
+      q = (atoi(string(1, input[i]).c_str()) > q) ? atoi(string(1, input[i]).c_str()) : q;
+    }
+  }
+  cout << "q: " << q << endl;
+  file.clear(); // Limpiar los flags del archivo.
+  file.seekg(0); // Volver al inicio del archivo.
+  file >> n; // Leer el tamaño del universo nuevamente.
+
+  while (file >> input) {
+    triples.push_back(parse_binary_string(input, n, q)); // Analizar cada triple binario.
   }
   file.close();
 
-  cout << "Triples analizados:" << endl;
+  cout << "Tripletas analizadas:" << endl;
   for (size_t i = 0; i < triples.size(); ++i) {
-    cout << "Triple " << (i + 1) << ": ";
+    cout << "Tripleta " << (i + 1) << ": ";
     triples[i].write(cout);
     cout << endl;
   }
 
-  // // Verificar si la partición es válida.
-  // bool valid = is_valid_3dm(triples, n);
-  // if (valid) {
-  //   cout << "¡La partición es válida!" << endl;
-  // } else {
-  //   cout << "La partición NO es válida." << endl;
-  // }
+  GOMA::bitset B = create_bitsetB(n, q);
+  cout << "Bitset B:   ";
+  B.write(cout);
+  cout << endl;
+
 
   return 0;
 }
