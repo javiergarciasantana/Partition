@@ -66,6 +66,49 @@ namespace GOMA
 			clear();
 		}
 
+    bitset operator+(const bitset &bs) const
+    {
+      assert(max_inx_ == bs.max_inx_);
+      bitset result(max_inx_);
+      unsigned long carry = 0;
+      
+      for (size_t i{0}; i < sz_; i++)
+      {
+        unsigned long long full_sum = static_cast<unsigned long long>(block_[i]) +
+                                      static_cast<unsigned long long>(bs.block_[i]) +
+                                      static_cast<unsigned long long>(carry);
+
+        result.block_[i] = static_cast<unsigned long>(full_sum); 
+        carry = static_cast<unsigned long>(full_sum >> N_BITS_WORD); // Extraer el carry
+      }
+      return result;
+    }
+
+    bitset operator-(const bitset &bs) const
+    {
+      assert(max_inx_ == bs.max_inx_); 
+      bitset result(max_inx_);
+      unsigned long borrow = 0;
+
+      for (size_t i = 0; i < sz_; i++)
+      {
+      // Ahora en lugar de carry usamos borrow
+        unsigned long long full_sub = static_cast<unsigned long long>(block_[i]) -
+                                      static_cast<unsigned long long>(bs.block_[i]) -
+                                      static_cast<unsigned long long>(borrow);
+
+        result.block_[i] = static_cast<unsigned long>(full_sub);
+
+        // Tenemos que saber si necesitamos el borrow para el siguiente bloque
+        borrow = (full_sub >> 63) & 1; 
+      }
+
+      // Optional: Cuando bs > *this
+      assert(borrow == 0 && "Resultado negativo!");
+
+      return result;
+    } 
+
 		const bitset &operator=(const bitset &bs)
 		{
 			for (size_t i{0}; i < sz_; i++)
@@ -231,15 +274,14 @@ namespace GOMA
 			return card;
 		}
 
-		ostream &write(ostream &os) const
-		{
+    ostream &write(ostream &os) const
+    {
+      string s;
+      to_string(s);
+      os << s;
 
-			string s;
-			to_string(s);
-			os << s;
-
-			return os;
-		}
+      return os;
+    }
 
 		void union_set(const bitset &B, bitset &C) const
 		{
