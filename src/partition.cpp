@@ -30,10 +30,8 @@ GOMA::bitset create_bitsetB(int n, int q, int p) {
 }
 
 
-int main() {
-  string filename;
-  cout << "Ingrese el nombre del archivo: ";
-  cin >> filename;
+int main(int argc, char* argv[]) {
+  string filename = argv[1]; 
 
   ifstream file(filename);
   if (!file.is_open()) {
@@ -73,11 +71,13 @@ int main() {
   }
 
   GOMA::bitset B = create_bitsetB(n, q, p);
-  cout << "Bitset B:         ";
+  cout << "\nBitset B:         ";
   B.write(cout);
   cout << endl;
 
   GOMA::bitset sum(3 * p * q);
+  GOMA::bitset C2_B(3 * p * q);
+
   for (const auto& triple : triples) {
     sum = sum + triple; 
   }
@@ -89,9 +89,14 @@ int main() {
   (sum + sum).write(cout);
   cout << endl;
 
+  cout << "C2                ";
+  C2_B = B.ComplementA2();
+  (C2_B).write(cout);
+  cout << endl;
+
   cout << "Suma 2 veces - B: ";
   sum = sum - B;
-  (sum - B).write(cout);
+  (sum).write(cout);
   return 0;
 }
  

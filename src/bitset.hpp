@@ -70,44 +70,42 @@ namespace GOMA
     {
       assert(max_inx_ == bs.max_inx_);
       bitset result(max_inx_);
-      unsigned long carry = 0;
+      size_t carry = 0;
       
       for (size_t i{0}; i < sz_; i++)
       {
-        unsigned long long full_sum = static_cast<unsigned long long>(block_[i]) +
-                                      static_cast<unsigned long long>(bs.block_[i]) +
-                                      static_cast<unsigned long long>(carry);
+        size_t full_sum = (block_[i]) + (bs.block_[i]) +
+                                      (carry);
 
-        result.block_[i] = static_cast<unsigned long>(full_sum); 
-        carry = static_cast<unsigned long>(full_sum >> N_BITS_WORD); // Extraer el carry
+        result.block_[i] = (full_sum); 
+        carry = (full_sum >> N_BITS_WORD); // Extraer el carry
       }
       return result;
     }
 
-    bitset operator-(const bitset &bs) const
-    {
-      assert(max_inx_ == bs.max_inx_); 
+    bitset operator-(const bitset &bs) const {
+      assert(max_inx_ == bs.max_inx_); // Ambos bitsets deben tener el mismo tamaño
+      bitset complement = bs.ComplementA2();
+      return *this + complement; // Sumar el complemento a 2
+    }
+
+    bitset ComplementA2() const {
       bitset result(max_inx_);
-      unsigned long borrow = 0;
+      long carry = 1; // Iniciar con el bit +1 para el complemento a 2
 
-      for (size_t i = 0; i < sz_; i++)
-      {
-      // Ahora en lugar de carry usamos borrow
-        unsigned long long full_sub = static_cast<unsigned long long>(block_[i]) -
-                                      static_cast<unsigned long long>(bs.block_[i]) -
-                                      static_cast<unsigned long long>(borrow);
-
-        result.block_[i] = static_cast<unsigned long>(full_sub);
-
-        // Tenemos que saber si necesitamos el borrow para el siguiente bloque
-        borrow = (full_sub >> 63) & 1; 
+      for (size_t i = 0; i < sz_; i++) {
+          result.block_[i] = ~block_[i] + carry; // Invertir y sumar 1
+          if (result.block_[i] < ~block_[i]) { // Si hay un acarreo
+              carry = 1;
+          } else {
+              carry = 0;
+          }
       }
 
-      // Optional: Cuando bs > *this
-      assert(borrow == 0 && "Resultado negativo!");
-
       return result;
-    } 
+    }
+
+      
 
 		const bitset &operator=(const bitset &bs)
 		{
