@@ -7,7 +7,7 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 # The top level Makefile was generated from the following files:
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
-  "/Users/javiersantana/INF 2024:2025/Complejidad Computacional/Partition/CMakeLists.txt"
+  "/Users/javiersantana/INF_2024_2025/Complejidad_Computacional/Partition/CMakeLists.txt"
   "CMakeFiles/3.31.2/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.31.2/CMakeSystem.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeCXXCompiler.cmake.in"
@@ -110,5 +110,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/Func_pr.dir/DependInfo.cmake"
+  "CMakeFiles/Partition.dir/DependInfo.cmake"
   )

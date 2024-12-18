@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/javiersantana/INF 2024:2025/Complejidad Computacional/Partition/src/partition.cpp" "CMakeFiles/Func_pr.dir/src/partition.cpp.o" "gcc" "CMakeFiles/Func_pr.dir/src/partition.cpp.o.d"
+  "/Users/javiersantana/INF_2024_2025/Complejidad_Computacional/Partition/src/partition.cpp" "CMakeFiles/Partition.dir/src/partition.cpp.o" "gcc" "CMakeFiles/Partition.dir/src/partition.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

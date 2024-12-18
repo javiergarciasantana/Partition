@@ -57,10 +57,10 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/javiersantana/INF 2024:2025/Complejidad Computacional/Partition"
+CMAKE_SOURCE_DIR = /Users/javiersantana/INF_2024_2025/Complejidad_Computacional/Partition
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/javiersantana/INF 2024:2025/Complejidad Computacional/Partition/build"
+CMAKE_BINARY_DIR = /Users/javiersantana/INF_2024_2025/Complejidad_Computacional/Partition/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/javiersantana/INF 2024:2025/Complejidad Computacional/Partition/build/CMakeFiles" "/Users/javiersantana/INF 2024:2025/Complejidad Computacional/Partition/build//CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/javiersantana/INF_2024_2025/Complejidad_Computacional/Partition/build/CMakeFiles /Users/javiersantana/INF_2024_2025/Complejidad_Computacional/Partition/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/javiersantana/INF 2024:2025/Complejidad Computacional/Partition/build/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/javiersantana/INF_2024_2025/Complejidad_Computacional/Partition/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -117,24 +117,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Func_pr
+# Target rules for targets named Partition
 
 # Build rule for target.
-Func_pr: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Func_pr
-.PHONY : Func_pr
+Partition: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Partition
+.PHONY : Partition
 
 # fast build rule for target.
-Func_pr/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Func_pr.dir/build.make CMakeFiles/Func_pr.dir/build
-.PHONY : Func_pr/fast
+Partition/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Partition.dir/build.make CMakeFiles/Partition.dir/build
+.PHONY : Partition/fast
 
 src/partition.o: src/partition.cpp.o
 .PHONY : src/partition.o
 
 # target to build an object file
 src/partition.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Func_pr.dir/build.make CMakeFiles/Func_pr.dir/src/partition.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Partition.dir/build.make CMakeFiles/Partition.dir/src/partition.cpp.o
 .PHONY : src/partition.cpp.o
 
 src/partition.i: src/partition.cpp.i
@@ -142,7 +142,7 @@ src/partition.i: src/partition.cpp.i
 
 # target to preprocess a source file
 src/partition.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Func_pr.dir/build.make CMakeFiles/Func_pr.dir/src/partition.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Partition.dir/build.make CMakeFiles/Partition.dir/src/partition.cpp.i
 .PHONY : src/partition.cpp.i
 
 src/partition.s: src/partition.cpp.s
@@ -150,7 +150,7 @@ src/partition.s: src/partition.cpp.s
 
 # target to generate assembly for a file
 src/partition.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Func_pr.dir/build.make CMakeFiles/Func_pr.dir/src/partition.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Partition.dir/build.make CMakeFiles/Partition.dir/src/partition.cpp.s
 .PHONY : src/partition.cpp.s
 
 # Help Target
@@ -161,7 +161,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... Func_pr"
+	@echo "... Partition"
 	@echo "... src/partition.o"
 	@echo "... src/partition.i"
 	@echo "... src/partition.s"

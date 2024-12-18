@@ -50,13 +50,11 @@ int main(int argc, char* argv[]) {
       q = (atoi(string(1, input[i]).c_str()) > q) ? atoi(string(1, input[i]).c_str()) : q;
     }
   }
-  cout << "q: " << q << endl;
   file.clear(); // Limpiar los flags del archivo.
   file.seekg(0); // Volver al inicio del archivo.
   file >> n; // Leer el tamaño del universo nuevamente.
 
   int p = log2(n) + 1;
-  std::cout << "p: " << p << std::endl;
 
   while (file >> input) {
     triples.push_back(parse_binary_string(input, n, q, p)); // Analizar cada triple binario.
@@ -85,11 +83,15 @@ int main(int argc, char* argv[]) {
   sum.write(cout);
   cout << endl;
 
+  cout << "Suma 1 vez + B:   ";
+  (sum + B).write(cout);
+  cout << endl;
+
   cout << "Suma 2 veces:     ";
   (sum + sum).write(cout);
   cout << endl;
 
-  cout << "C2                ";
+  cout << "C2 de B:          ";
   C2_B = B.ComplementA2();
   (C2_B).write(cout);
   cout << endl;

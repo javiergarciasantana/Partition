@@ -105,8 +105,6 @@ namespace GOMA
       return result;
     }
 
-      
-
 		const bitset &operator=(const bitset &bs)
 		{
 			for (size_t i{0}; i < sz_; i++)

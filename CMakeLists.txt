@@ -20,14 +20,14 @@
 cmake_minimum_required(VERSION 3.1)  # Mandatory
 
 # set the project name 
-project(ULL_CARCEL                # Mandatory
+project(Partition               # Mandatory
     VERSION 1.0
-    DESCRIPTION "Saquenme de la ull"
+    DESCRIPTION "Partition problem"
     LANGUAGES CXX)
 
 
 # specify the C++ standard
-set(CMAKE_CXX_STANDARD 17) 						# Use c++17
+set(CMAKE_CXX_STANDARD 14) 						# Use c++14
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # tell cmake to output binaries here:
@@ -41,20 +41,6 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 # tell cmake where to look for *.h files
 include_directories(${PROJECT_SOURCE_DIR}/src)
 
-
-# List of source files
-set(SOURCES
-  src/partition.cpp
-)
-
-# List of header files (not required by CMake, but for clarity/documentation)
-set(HEADERS
-  src/bitset.hpp
-)
-
-# Add the executable (source files only)
-add_executable(Func_pr ${SOURCES})
-
-# Optionally add header files to the target for IDEs
-# This is not required but helps IDEs recognize headers as part of the project
-target_sources(Func_pr PRIVATE ${HEADERS})
+add_executable(Partition
+    src/partition.cpp
+    src/bitset.hpp)
