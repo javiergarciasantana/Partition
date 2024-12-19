@@ -1,6 +1,6 @@
 # Partition
 ## Encontrar un 3dm, conjunto de tripletas y la salida va a ser el conjunto s y sus tamaños respectivos y el valor de b
-### Dificultad: Representar cadena de bits de gran longitud
+   Dificultad: Representar cadena de bits de gran longitud
 
 ---
 
@@ -18,6 +18,9 @@
 
 4. **Entrada desde archivo**:
    - Analiza tripletas binarias desde un archivo de entrada para crear y manipular `bitsets`.
+  
+     <img width="570" alt="image" src="https://github.com/user-attachments/assets/55a59460-0cb8-4354-8416-0f2cc9eda33d" />
+
 
 ---
 
